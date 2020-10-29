@@ -1,2 +1,2 @@
 # ProjetoIntegrador
-Repositório referente ao projeto integrador final da Generation Brasil.
+Repositório referente ao projeto integrador da Generation Brasil.
