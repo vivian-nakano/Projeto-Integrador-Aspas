@@ -26,7 +26,7 @@ public class TemaModel {
 	
 	@Column 
 	@NotNull
-	private int serie;
+	private String serie;
 
 	public Long getId_tema() {
 		return id_tema;
@@ -52,13 +52,12 @@ public class TemaModel {
 		this.submateria = submateria;
 	}
 
-	public int getSerie() {
+	public String getSerie() {
 		return serie;
 	}
 
-	public void setSerie(int serie) {
+	public void setSerie(String serie) {
 		this.serie = serie;
 	}
-	
-	
+
 }
