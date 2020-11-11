@@ -1,63 +1,100 @@
 package com.deveducation.aspas.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.sun.istack.NotNull;
+
 
 @Entity
-@Table(name="tb_usuario")
+@Table(name = "tb_usuario")
 public class UsuarioModel {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id_usuario;
+	private Long idUsuario;
 	
 	@Column
-	@NotEmpty(message="Digite nome completo.")
-	private String nome_completo;
+	@NotNull
+	private String nomeCompleto;
 	
-	@Column 
-	@NotEmpty(message="Digite seu email de acesso.")
-	private String email_usuario;
+	@Column
+	@NotNull
+	private String emailUsuario;
 	
-	@Column 
-	@NotEmpty(message="Digite sua senha.")
-	private String senha_usuario;
+	@Column
+	@NotNull
+	private String senhaUsuario;
 
-	public Long getId_usuario() {
-		return id_usuario;
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("usuario")
+	private List<PostagemModel> postagem;
+
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("usuario")
+	private List<ComentarioModel> comentario;
+
+	
+	//Getter e Setter
+	public Long getIdUsuario() {
+		return idUsuario;
 	}
 
-	public void setId_usuario(Long id_usuario) {
-		this.id_usuario = id_usuario;
+	public void setIdUsuario(Long idUsuario) {
+		this.idUsuario = idUsuario;
 	}
 
-	public String getNome_completo() {
-		return nome_completo;
+	public String getNomeCompleto() {
+		return nomeCompleto;
 	}
 
-	public void setNome_completo(String nome_completo) {
-		this.nome_completo = nome_completo;
+	public void setNomeCompleto(String nomeCompleto) {
+		this.nomeCompleto = nomeCompleto;
 	}
 
-	public String getEmail_usuario() {
-		return email_usuario;
+	public String getEmaiUsuario() {
+		return emailUsuario;
 	}
 
-	public void setEmail_usuario(String email_usuario) {
-		this.email_usuario = email_usuario;
+	public void setEmaiUsuario(String emaiUsuario) {
+		this.emailUsuario = emaiUsuario;
 	}
 
-	public String getSenha_usuario() {
-		return senha_usuario;
+	public String getSenhaUsuario() {
+		return senhaUsuario;
 	}
 
-	public void setSenha_usuario(String senha_usuario) {
-		this.senha_usuario = senha_usuario;
+	public void setSenhaUsuario(String senhaUsuario) {
+		this.senhaUsuario = senhaUsuario;
 	}
 
+	public List<PostagemModel> getPostagem() {
+		return postagem;
+	}
+
+	public void setPostagem(List<PostagemModel> postagem) {
+		this.postagem = postagem;
+	}
+
+	public List<ComentarioModel> getComentarioUsuario() {
+		return comentario;
+	}
+
+	public void setComentario(List<ComentarioModel> comentario) {
+		this.comentario = comentario;
+	}
+	
+	
+	
+
+	
 }

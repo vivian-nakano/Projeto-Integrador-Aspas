@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -14,37 +15,48 @@ import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
-@Table(name="tb_comentario")
+@Table(name = "tb_comentario")
 public class ComentarioModel {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id_comentario;
+	private Long idComentario;
 	
 	@Column
 	@NotEmpty
-	private String comentario;
+	private String texto;
 	
 	@Column(columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 	@Temporal(TemporalType.TIMESTAMP)
 	@CreationTimestamp
 	private Date data;
 
-	public Long getId_comentario() {
-		return id_comentario;
+	
+	@ManyToOne
+	@JsonIgnoreProperties("comentario")
+	private UsuarioModel usuario;
+	
+	@ManyToOne
+	@JsonIgnoreProperties("comentario")
+	private PostagemModel postagem;
+	
+	public Long getIdComentario() {
+		return idComentario;
 	}
 
-	public void setId_comentario(Long id_comentario) {
-		this.id_comentario = id_comentario;
+	public void setIdComentario(Long idComentario) {
+		this.idComentario = idComentario;
 	}
 
-	public String getComentario() {
-		return comentario;
+	public String getTexto() {
+		return texto;
 	}
 
-	public void setComentario(String comentario) {
-		this.comentario = comentario;
+	public void setTexto(String texto) {
+		this.texto = texto;
 	}
 
 	public Date getData() {
@@ -54,5 +66,22 @@ public class ComentarioModel {
 	public void setData(Date data) {
 		this.data = data;
 	}
+
+	public UsuarioModel getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(UsuarioModel usuario) {
+		this.usuario = usuario;
+	}
+
+	public PostagemModel getPostagem() {
+		return postagem;
+	}
+
+	public void setPostagem(PostagemModel postagem) {
+		this.postagem = postagem;
+	}
 	
+
 }
