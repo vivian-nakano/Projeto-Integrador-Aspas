@@ -1,4 +1,4 @@
-  package com.deveducation.aspas.repository;
+package com.deveducation.aspas.repository;
 
 import java.util.List;
 

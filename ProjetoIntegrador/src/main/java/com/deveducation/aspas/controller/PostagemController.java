@@ -22,39 +22,40 @@ import com.deveducation.aspas.repository.PostagemRepository;
 @RequestMapping("/postagem")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class PostagemController {
-
+	
 	@Autowired
 	private PostagemRepository repository;
-
+	
 	@GetMapping
-	public ResponseEntity<List<PostagemModel>> getAll() {
+	public ResponseEntity<List<PostagemModel>> getAll(){
 		return ResponseEntity.ok(repository.findAll());
 	}
-
+	
 	@GetMapping("/{id}")
-	public ResponseEntity<PostagemModel> getById(@PathVariable Long idPostagem) {
-		return repository.findById(idPostagem).map(resp -> ResponseEntity.ok(resp))
+	public ResponseEntity<PostagemModel> getById(@PathVariable Long id) {
+		return repository.findById(id).map(resp -> ResponseEntity.ok(resp))
 				.orElse(ResponseEntity.notFound().build());
 	}
-
+	
 	@GetMapping("/titulo/{titulo}")
-	public ResponseEntity<List<PostagemModel>> getByNomeCompleto(@PathVariable String titulo) {
+	public ResponseEntity<List<PostagemModel>> getByNomeCompleto(@PathVariable String titulo){
 		return ResponseEntity.ok(repository.findAllByTituloContainingIgnoreCase(titulo));
 	}
-
+	
 	@PostMapping
-	public ResponseEntity<PostagemModel> post(@RequestBody PostagemModel postagem) {
-		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(postagem));
+	public ResponseEntity<PostagemModel> post (@RequestBody PostagemModel postagem) {
+		return ResponseEntity.status(HttpStatus.CREATED)
+				.body(repository.save(postagem));
 	}
-
+	
 	@PutMapping
-	public ResponseEntity<PostagemModel> put(@RequestBody PostagemModel postagem) {
+	public ResponseEntity<PostagemModel> put (@RequestBody PostagemModel postagem) {
 		return ResponseEntity.ok(repository.save(postagem));
 	}
-
+	
 	@DeleteMapping("/{id}")
-	public void delete(@PathVariable Long idPostagem) {
-		repository.deleteById(idPostagem);
+	public void delete(@PathVariable Long id) {
+		repository.deleteById(id);
 	}
 
 }

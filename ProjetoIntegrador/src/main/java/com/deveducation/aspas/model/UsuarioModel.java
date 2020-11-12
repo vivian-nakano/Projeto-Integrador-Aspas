@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
@@ -34,7 +35,11 @@ public class UsuarioModel {
 	@Column
 	@NotNull
 	private String senhaUsuario;
-
+	
+	@Column
+	@NotNull
+	private String tipoUsuario;
+	
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("usuario")
 	private List<PostagemModel> postagem;
@@ -42,9 +47,10 @@ public class UsuarioModel {
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("usuario")
 	private List<ComentarioModel> comentario;
-
 	
+
 	//Getter e Setter
+	
 	public Long getIdUsuario() {
 		return idUsuario;
 	}
@@ -61,12 +67,12 @@ public class UsuarioModel {
 		this.nomeCompleto = nomeCompleto;
 	}
 
-	public String getEmaiUsuario() {
+	public String getEmailUsuario() {
 		return emailUsuario;
 	}
 
-	public void setEmaiUsuario(String emaiUsuario) {
-		this.emailUsuario = emaiUsuario;
+	public void setEmailUsuario(String emailUsuario) {
+		this.emailUsuario = emailUsuario;
 	}
 
 	public String getSenhaUsuario() {
@@ -77,6 +83,14 @@ public class UsuarioModel {
 		this.senhaUsuario = senhaUsuario;
 	}
 
+	public String getTipoUsuario() {
+		return tipoUsuario;
+	}
+
+	public void setTipoUsuario(String tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
+	}
+
 	public List<PostagemModel> getPostagem() {
 		return postagem;
 	}
@@ -85,15 +99,14 @@ public class UsuarioModel {
 		this.postagem = postagem;
 	}
 
-	public List<ComentarioModel> getComentarioUsuario() {
+	public List<ComentarioModel> getComentario() {
 		return comentario;
 	}
 
 	public void setComentario(List<ComentarioModel> comentario) {
 		this.comentario = comentario;
 	}
-	
-	
+
 	
 
 	

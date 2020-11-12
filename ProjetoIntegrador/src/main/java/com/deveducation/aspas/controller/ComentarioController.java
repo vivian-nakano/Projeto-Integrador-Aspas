@@ -32,8 +32,8 @@ public class ComentarioController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<ComentarioModel> getById(@PathVariable Long idComentario) {
-		return repository.findById(idComentario).map(resp -> ResponseEntity.ok(resp))
+	public ResponseEntity<ComentarioModel> getById(@PathVariable Long id) {
+		return repository.findById(id).map(resp -> ResponseEntity.ok(resp))
 				.orElse(ResponseEntity.notFound().build());
 	}
 	
@@ -50,8 +50,8 @@ public class ComentarioController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public void delete(@PathVariable Long idComentario) {
-		repository.deleteById(idComentario);
+	public void delete(@PathVariable Long id) {
+		repository.deleteById(id);
 	}
 
 }

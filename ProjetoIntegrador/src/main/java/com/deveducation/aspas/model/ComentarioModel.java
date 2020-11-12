@@ -43,6 +43,8 @@ public class ComentarioModel {
 	@JsonIgnoreProperties("comentario")
 	private PostagemModel postagem;
 	
+	
+	//Getter e Setter
 	public Long getIdComentario() {
 		return idComentario;
 	}

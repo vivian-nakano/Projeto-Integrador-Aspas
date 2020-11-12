@@ -1,5 +1,4 @@
 package com.deveducation.aspas.model;
-
 import java.util.Date;
 import java.util.List;
 
@@ -18,6 +17,7 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -52,12 +52,12 @@ public class PostagemModel {
 	private TemaModel tema;
 
 	@ManyToOne
-	@JsonIgnoreProperties("postagem")
+	@JsonIgnoreProperties({"postagem","comentario"})
 	private UsuarioModel usuario;
 	
 	@OneToMany(mappedBy = "postagem", cascade = CascadeType.ALL)
-	@JsonIgnoreProperties("postagem")
-	private List<ComentarioModel> comentario;
+	@JsonIgnore
+		private List<ComentarioModel> comentario;
 
 	public Long getIdPostagem() {
 		return idPostagem;
@@ -130,5 +130,9 @@ public class PostagemModel {
 	public void setComentario(List<ComentarioModel> comentario) {
 		this.comentario = comentario;
 	}
+
+	//Getter e Setter
+	
+	
 		
 }

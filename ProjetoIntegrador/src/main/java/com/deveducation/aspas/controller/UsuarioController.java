@@ -32,8 +32,8 @@ public class UsuarioController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<UsuarioModel> getById(@PathVariable Long idUsuario) {
-		return repository.findById(idUsuario).map(resp -> ResponseEntity.ok(resp))
+	public ResponseEntity<UsuarioModel> getById(@PathVariable Long id) {
+		return repository.findById(id).map(resp -> ResponseEntity.ok(resp))
 				.orElse(ResponseEntity.notFound().build());
 	}
 	
@@ -54,7 +54,7 @@ public class UsuarioController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public void delete(@PathVariable Long idUsuario) {
-		repository.deleteById(idUsuario);
+	public void delete(@PathVariable Long id) {
+		repository.deleteById(id);
 	}
 }

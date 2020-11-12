@@ -1,3 +1,4 @@
+  
 package com.deveducation.aspas.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;

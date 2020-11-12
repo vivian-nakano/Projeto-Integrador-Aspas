@@ -1,4 +1,3 @@
-  
 package com.deveducation.aspas.controller;
 
 import java.util.List;
@@ -33,8 +32,8 @@ public class TemaController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<TemaModel> getById(@PathVariable Long idTema) {
-		return repository.findById(idTema).map(resp -> ResponseEntity.ok(resp))
+	public ResponseEntity<TemaModel> getById(@PathVariable Long id) {
+		return repository.findById(id).map(resp -> ResponseEntity.ok(resp))
 				.orElse(ResponseEntity.notFound().build());
 	}
 	
@@ -60,8 +59,8 @@ public class TemaController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public void delete(@PathVariable Long idTema) {
-		repository.deleteById(idTema);
+	public void delete(@PathVariable Long id) {
+		repository.deleteById(id);
 	}
 	
 }
